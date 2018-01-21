@@ -11,6 +11,7 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 
+
 #include <nanogui/nanogui.h>
 #include <iostream>
 #include "widgets/w_robot_status_sensor.h"
@@ -39,8 +40,8 @@ int main(int /* argc */, char ** /* argv */) {
 
 
         screen->setVisible(true);
+        screen->drawAll();
         screen->performLayout();
-        //robot_status_sensor_widget_->center();
 
         nanogui::mainloop();
     }
