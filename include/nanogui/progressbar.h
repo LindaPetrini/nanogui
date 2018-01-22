@@ -24,12 +24,18 @@ NAMESPACE_BEGIN(nanogui)
 class NANOGUI_EXPORT ProgressBar : public Widget {
 public:
     ProgressBar(Widget *parent);
+    
+    /// The background color of this Button.
+    Color mBackgroundColor;
 
     float value() { return mValue; }
     void setValue(float value) { mValue = value; }
 
     virtual Vector2i preferredSize(NVGcontext *ctx) const override;
     virtual void draw(NVGcontext* ctx) override;
+
+    /// Sets the background color of this Button.
+    void setBackgroundColor(const Color &backgroundColor) { mBackgroundColor = backgroundColor; }
 
     virtual void save(Serializer &s) const override;
     virtual bool load(Serializer &s) override;

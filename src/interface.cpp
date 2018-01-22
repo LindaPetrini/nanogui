@@ -38,7 +38,7 @@ int main(int /* argc */, char ** /* argv */) {
         wRobotStatusSensor *robot_status_sensor_widget_ = new wRobotStatusSensor(screen);
 
 
-
+        
         screen->setVisible(true);
         screen->drawAll();
         screen->performLayout();

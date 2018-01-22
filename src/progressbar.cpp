@@ -16,7 +16,7 @@
 NAMESPACE_BEGIN(nanogui)
 
 ProgressBar::ProgressBar(Widget *parent)
-    : Widget(parent), mValue(0.0f) {}
+    : Widget(parent), mBackgroundColor(Color(92, 255)), mValue(0.0f) {}
 
 Vector2i ProgressBar::preferredSize(NVGcontext *) const {
     return Vector2i(70, 12);
@@ -39,7 +39,7 @@ void ProgressBar::draw(NVGcontext* ctx) {
     paint = nvgBoxGradient(
         ctx, mPos.x(), mPos.y(),
         barPos+1.5f, mSize.y()-1, 3, 4,
-        Color(220, 100), Color(128, 100));
+        mBackgroundColor, Color(128, 100));
 
     nvgBeginPath(ctx);
     nvgRoundedRect(

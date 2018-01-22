@@ -29,7 +29,7 @@ public:
   wRobotStatusSensor(nanogui::Screen* screen) : Widget(screen) {
     nanogui::FormHelper *robot_status_sensor_helper_ = new nanogui::FormHelper(screen);
 
-    nanogui::ref<nanogui::Window> window = robot_status_sensor_helper_->addWindow(Eigen::Vector2i(100, 100), "robot status sensor");
+    nanogui::ref<nanogui::Window> window = robot_status_sensor_helper_->addWindow(Eigen::Vector2i(100, 100), "Robot Status");
 
     window->setLayout(new nanogui::GroupLayout());
 
@@ -50,37 +50,41 @@ public:
 
     new Label(window, "Battery Charge", "sans-bold");
     float battery_charge_sensor_ = 0.7f;
+    stream << std::fixed << std::setprecision(0) << battery_charge_sensor_ * 100;
+    std::string battery_charge_string = stream.str();
     Widget *panel = new Widget(window);
-
+    panel->setLayout(new BoxLayout(Orientation::Vertical,
+                                   Alignment::Middle, 0, 40));
 
     nanogui::ProgressBar *mProgress = new nanogui::ProgressBar(window);
     mProgress->setValue(battery_charge_sensor_);
     TextBox *textBox2 = new TextBox(panel);
-    textBox2->setFixedSize(Vector2i(30, 20));
-    textBox2->setValue(std::to_string(battery_charge_sensor_));
+    textBox2->setFixedSize(Vector2i(40, 20));
+    textBox2->setValue(battery_charge_string);
     textBox2->setUnits("%");
 
     textBox2->setFontSize(14);
     textBox2->setAlignment(TextBox::Alignment::Right);
 
-    panel->setLayout(new BoxLayout(Orientation::Horizontal,
-                                   Alignment::Middle, 0, 40));
 
     new Label(window, "Battery Temperature", "sans-bold");
-    Widget *panel1 = new Widget(window);
-    panel1->setLayout(new BoxLayout(Orientation::Horizontal,
-                                  Alignment::Middle, 0, 40));
+    // Widget *panel1 = new Widget(window);
+    // panel1->setLayout(new BoxLayout(Orientation::Horizontal,
+    //                               Alignment::Middle, 0, 40));
 
-    nanogui::ProgressBar *mProgress2 = new nanogui::ProgressBar(panel1);
-    float battery_temperature_sensor_ = 0.7f;
+    nanogui::ProgressBar *mProgress2 = new nanogui::ProgressBar(window);
+    float battery_temperature_sensor_ = 0.54f;
+
     mProgress2->setValue(battery_temperature_sensor_);
-    TextBox *textBox3 = new TextBox(panel1);
-    textBox3->setFixedSize(Vector2i(30, 20));
-    textBox3->setValue(std::to_string(battery_temperature_sensor_));
-    textBox3->setUnits("%");
+    mProgress2->setBackgroundColor(Color(0, 255, 255, 25));
 
-    textBox3->setFontSize(14);
-    textBox3->setAlignment(TextBox::Alignment::Right);
+    // TextBox *textBox3 = new TextBox(panel1);
+    // textBox3->setFixedSize(Vector2i(40, 20));
+    // textBox3->setValue(std::to_string(battery_temperature_sensor_));
+    // textBox3->setUnits("%");
+    //
+    // textBox3->setFontSize(14);
+    // textBox3->setAlignment(TextBox::Alignment::Right);
 
 
     //robot_status_sensor_helper_->addVariable("battery temperature sensor", battery_current_sensor_ = 0.8f);
